@@ -28,7 +28,13 @@ class ProjectModel extends \ArrayObject
             $this->name = $data['name'];
         }
         if (isset($data['timeline']) && is_array($data['timeline'])) {
-            $this->timeline = $data['timeline'];
+            $timeline = array();
+            foreach ($data['timeline'] as $index => $noteData) {
+                $noteData['id'] = $index;
+                $note = (new NoteModel)->initByData($noteData);
+                $timeline[] = $note;
+            }
+            $this->timeline = $timeline;
         };
         return $this;
     }

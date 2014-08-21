@@ -11,10 +11,10 @@
     <ol class="timeline">
     <?php foreach ($project->timeline as $note) { ?>
         <li class="tl-node">
-            <div class="tl-stamp"><?= $note['stamp'] ?></div>
-            <div class="tl-content"><?= $note['content'] ?></div>
+            <div class="tl-stamp"><?= $note->stamp ?></div>
+            <div class="tl-content"><?= $note->content ?></div>
             <div class="tl-links">
-            <?php foreach ($note['links'] as $label => $href) { ?>
+            <?php foreach ($note->links as $label => $href) { ?>
                 <a href="<?= $href ?>"><?= $label ?></a>
             <?php } ?>
             </div>
