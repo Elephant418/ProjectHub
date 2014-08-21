@@ -2,14 +2,17 @@
 
 namespace ProjectHub\Model;
 
-class TimeLineModel extends \ArrayObject
+use ProjectHub\Model\NoteModel;
+
+class ProjectModel extends \ArrayObject
 {
 
 
     /* ATTRIBUTES
      *************************************************************************/
-    protected $id;
-    protected $noteList = array();
+    public $id;
+    public $name = array();
+    public $timeline = array();
 
     
 
@@ -21,8 +24,11 @@ class TimeLineModel extends \ArrayObject
             return null;
         }
         $this->id = $data['id'];
-        if (is_array($data['timeline'])) {
-            $this->noteList = $data['timeline'];
+        if (isset($data['name']) && is_string($data['name'])) {
+            $this->name = $data['name'];
+        }
+        if (isset($data['timeline']) && is_array($data['timeline'])) {
+            $this->timeline = $data['timeline'];
         };
         return $this;
     }
