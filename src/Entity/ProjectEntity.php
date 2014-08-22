@@ -18,7 +18,7 @@ class ProjectEntity extends \ProjectHub\Entity
     public function fetchAll($limit = null, $offset = null, &$count = false)
     {
         $projectList = parent::fetchAll($limit, $offset, $count);
-        usort($projectList, array($this, 'compareDate'));
+        uksort($projectList, array($this, 'compareDate'));
         return $projectList;
     }
     
