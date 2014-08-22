@@ -40,7 +40,7 @@ class Application
             $this->renderTutorial();
         } else if (count($projectList) == 1) {
             $project = array_pop($projectList);
-            $this->renderProject($project);
+            $this->renderProject($project, 1);
         } else {
             $this->renderProjectList($projectList);
         }
@@ -49,11 +49,12 @@ class Application
     
     public function one($projectId)
     {
-        $project = (new ProjectEntity)->fetchById($projectId);
-        if (!$project) {
+        $projectList = (new ProjectEntity)->fetchAll();
+        if (!isset($projectList[$projectId])) {
             return false;
         }
-        $this->renderProject($project);
+        $project = $projectList[$projectId];
+        $this->renderProject($project, count($projectList));
         return true;
     }
 
@@ -61,17 +62,16 @@ class Application
 
     /* PROTECTED METHODS
      *************************************************************************/
-    public function renderProject($project)
+    public function renderProject($project, $projectCount)
     {
         $application = $this;
-        require_once(ROOT_PATH.'/template/index.php');
+        require_once(ROOT_PATH.'/template/project.php');
     }
     
     public function renderProjectList($projectList)
     {
-        foreach($projectList as $project) {
-            echo $project->stamp.' <a href="?project='.$project->id.'">'.$project->name.'</a><br>';
-        }
+        $application = $this;
+        require_once(ROOT_PATH.'/template/home.php');
     }
 
     public function renderTutorial()

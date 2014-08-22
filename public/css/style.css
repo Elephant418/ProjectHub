@@ -85,13 +85,13 @@ h3 {
     border: 5px solid #dddddd; }
 
 /* Individual Timeline Item */
-.tl-node {
+.timeline-node {
   padding-left: 1em;
   margin-bottom: 3em;
   position: relative; }
-  .tl-node a {
+  .timeline-node a {
     display: block; }
-  .tl-node:before {
+  .timeline-node:before {
     content: "";
     position: absolute;
     top: 0;
@@ -103,7 +103,7 @@ h3 {
     border: 5px solid #dddddd; }
 
 /* Timestamp */
-.tl-stamp {
+.timeline-stamp {
   font-size: 0.7em;
   color: gray; }
 
