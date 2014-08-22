@@ -38,7 +38,7 @@ class Entity
         foreach ($idList as $id) {
             $model = $this->fetchById($id);
             if ($model) {
-                $modelList[$id] = $model;
+                $modelList[] = $model;
             }
         }
         return $modelList;
