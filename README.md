@@ -40,7 +40,7 @@ How to Install
 
 To start using ProjectHub you have to:
 
-1. Deploy the project files in a folder visible by apache
+1. Deploy [the files](https://github.com/tzi/ProjectHub/archive/v1.0.0.zip) in a folder visible by apache
 2. See the sample project data, via your browser, to check if the installation works 
 3. Setup your own project data in the `data` folder 
 
