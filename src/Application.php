@@ -64,24 +64,36 @@ class Application
      *************************************************************************/
     public function renderProject($project, $projectCount)
     {
-        $application = $this;
-        require_once(ROOT_PATH.'/template/project.php');
+        $this->render('project', array('project'=> $project, 'projectCount'=> $projectCount));
     }
     
     public function renderProjectList($projectList)
     {
-        $application = $this;
-        require_once(ROOT_PATH.'/template/home.php');
+        $this->render('home', array('projectList'=> $projectList));
     }
 
     public function renderTutorial()
     {
-        echo 'You have no project, you can add one in your data folder';
+        $this->render('welcome');
     }
 
     public function render404()
     {
-        echo 'Error 404';
+        $this->render('404');
+    }
+    
+    public function render($page, $vars = array())
+    {
+        extract($vars);
+        ob_start();
+        
+        $application = $this;
+        require(ROOT_PATH.'/template/'.$page.'.php');
+
+        $html = ob_get_contents();
+        ob_end_clean();
+
+        echo $html;
     }
 
 }
