@@ -16,7 +16,7 @@ This project is a PHP implementation of [Brad Frost’s Project Hub](https://git
 What is a project hub?
 --------
 
-A project hub is an HTML template for online project timelines.
+A project hub is an online project timelines.
 
 It is a tool for keeping track of the progress of a design/development project.
 The hub lives online (either publically available or password protected), so that everyone involved in the team has access to it.
