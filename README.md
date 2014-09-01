@@ -8,6 +8,7 @@ This project is a PHP version of [Brad Frost’s Project Hub](https://github.com
 1. [What is a project hub?](#what-is-a-project-hub)
 2. [Why would I use a project hub](#why-would-i-use-a-project-hub)
 3. [How to Install](#how-to-install)
+4. [How to Manage Your Projects](#how-to-manage-your-projects)
 4. [How to Contribute](#how-to-contribute)
 5. [Author & Community](#author--community)
 
@@ -47,6 +48,40 @@ To start using ProjectHub you have to:
 1. Deploy [the files](https://github.com/tzi/ProjectHub/archive/v1.0.0.zip) in a folder visible by apache
 2. See the sample project data, via your browser, to check if the installation works 
 3. Setup your own project data in the `data` folder 
+
+
+
+How to Manage Your Projects
+--------
+
+The projects are stored as `JSON` files. Every files in the `data` folder is a different project.
+
+A project is mainly a timeline of project update, which you can join links, like meetings notes or project deliveries.
+   
+The code below is a project example file:
+
+```json
+{
+    "name": "Project name",
+    "timeline": [
+        {
+            "stamp": "August 14th, 2014",
+            "content": "First",
+            "links": {
+                "Link to meeting notes": "http://example.com/meeting-notes",
+                "As many links as you want": "http://example.com/other-link",
+            }
+        },
+        {
+            "stamp": "August 9th, 2014",
+            "content": "Meeting 1",
+            "links": {
+                "Link to notes, design or demo": "http://example.com/"
+            }
+        }
+    ]
+}
+```
 
 
 
