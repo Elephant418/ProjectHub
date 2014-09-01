@@ -1,7 +1,7 @@
 Project Hub
 ================
 
-This project is a PHP implementation of [Brad Frost’s Project Hub](https://github.com/bradfrost/project-hub).
+This project is a PHP version of [Brad Frost’s Project Hub](https://github.com/bradfrost/project-hub).
 
 
 
@@ -38,6 +38,8 @@ The benefits of using a project hub:
 How to Install
 --------
 
+ProjectHub has no dependencies and no databases. The purpose was to have a code easy to install, understand and improve.
+
 To start using ProjectHub you have to:
 
 1. Deploy [the files](https://github.com/tzi/ProjectHub/archive/v1.0.0.zip) in a folder visible by apache
@@ -53,9 +55,9 @@ How to Contribute
 2. Create a new branch for each feature or improvement
 3. Send a pull request from each feature branch to the **master** branch
 
-If you don't know much about pull request, you can read [the Github article](https://help.github.com/articles/using-pull-requests).
+If you don't know much about pull request, you can read [the GitHub article](https://help.github.com/articles/using-pull-requests).
 
-All pull requests must follow the [PSR2 standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) and be accompanied).
+All pull requests must follow the [PSR2 standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
 
 
 
@@ -64,6 +66,6 @@ Author & Community
 
 ProjectHub is under [MIT License](http://opensource.org/licenses/MIT).  
 The project hub idea & the HTML template was created by [Brad Frost](http://bradfrostweb.com/).  
-The PHP implementation was created & maintained by [Thomas ZILLIOX](http://tzi.fr).
+The PHP version was created & maintained by [Thomas ZILLIOX](http://tzi.fr).
 
 [&uarr; top](#readme)
