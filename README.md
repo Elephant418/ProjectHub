@@ -41,7 +41,7 @@ The benefits of using a project hub:
 How to Install
 --------
 
-ProjectHub has no dependencies and no databases. The purpose was to have a code easy to install, understand and improve.
+Project Hub has no dependencies and no databases. The purpose was to have a code easy to install, understand and improve.
 
 To start using ProjectHub you have to:
 
@@ -54,7 +54,7 @@ To start using ProjectHub you have to:
 How to Manage Your Projects
 --------
 
-The projects are stored as `JSON` files. Every files in the `data` folder is a different project.
+The projects are stored as `JSON` files. Every file in the `data` folder is a different project.
 
 A project is mainly a timeline of project update, which you can join links, like meetings notes or project deliveries.
    
