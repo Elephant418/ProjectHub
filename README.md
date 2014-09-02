@@ -1,7 +1,7 @@
-Project Hub
+ProjectHub
 ================
 
-This project is a PHP version of [Brad Frost’s Project Hub](https://github.com/bradfrost/project-hub).
+This project is a PHP version of [Brad Frost’s project hub idea](https://github.com/bradfrost/project-hub).
 
 
 
@@ -41,7 +41,7 @@ The benefits of using a project hub:
 How to Install
 --------
 
-Project Hub has no dependencies and no databases. The purpose was to have a code easy to install, understand and improve.
+ProjectHub has no dependencies and no databases. The purpose was to have a code easy to install, understand and improve.
 
 To start using ProjectHub you have to:
 
