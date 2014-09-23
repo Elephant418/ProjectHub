@@ -33,7 +33,8 @@ class ProjectModel extends \ProjectHub\Model
         if (is_array($this->timeline)) {
             foreach ($this->timeline as $index => $noteData) {
                 $noteData['id'] = $index;
-                $note = (new NoteModel)->initByData($noteData);
+                $noteModel = new NoteModel;
+                $note = $noteModel->initByData($noteData);
                 $timeline[] = $note;
             }
         }

@@ -34,7 +34,7 @@ class Entity
 
     public function fetchByIdList($idList)
     {
-        $modelList = [];
+        $modelList = array();
         foreach ($idList as $id) {
             $model = $this->fetchById($id);
             if ($model) {
@@ -69,7 +69,7 @@ class Entity
 
     protected function resultAsModelList($dataList)
     {
-        $modelList = [];
+        $modelList = array();
         foreach ($dataList as $data) {
             $model = $this->getModel();
             $modelList[] = $model->initByData($data);
@@ -87,7 +87,7 @@ class Entity
      *************************************************************************/
     protected function getDataFromSourceFile($id, $filePath)
     {
-        $data = [];
+        $data = array();
         $data['id'] = $id;
         $jsonData = json_decode(file_get_contents($filePath), true);
         if (is_array($jsonData)) {
@@ -103,7 +103,7 @@ class Entity
 
     protected function getAllIds()
     {
-        $idList = [];
+        $idList = array();
         foreach (glob($this->dataFolder.'/*.json') as $file) {
             $file = basename($file);
             $id = substr($file, 0, strrpos($file, '.'));

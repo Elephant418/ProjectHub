@@ -35,7 +35,8 @@ class Application
     
     public function all()
     {
-        $projectList = (new ProjectEntity)->fetchAll();
+        $projectEntity = new ProjectEntity;
+        $projectList = $projectEntity->fetchAll();
         if (count($projectList) == 0) {
             $this->renderTutorial();
         } else if (count($projectList) == 1) {
@@ -49,7 +50,8 @@ class Application
     
     public function one($projectId)
     {
-        $projectList = (new ProjectEntity)->fetchAll();
+        $projectEntity = new ProjectEntity;
+        $projectList = $projectEntity->fetchAll();
         if (!isset($projectList[$projectId])) {
             return false;
         }
