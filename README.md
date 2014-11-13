@@ -41,13 +41,13 @@ The benefits of using a project hub:
 How to Install
 --------
 
-`ProjectHub` use [Model418](http://github.com/Elephant418/Model418) as a storage abstraction layer. So it could be connected to a database instead of the file system.
+`ProjectHub` use the [Model418 library](http://github.com/Elephant418/Model418) as a storage abstraction layer. So it could be connected to a database instead of the file system.
 
 The dependencies are committed to have a code easy to install, understand and improve.
 
 To start using `ProjectHub` you have to:
 
-1. Deploy [the files](https://github.com/tzi/ProjectHub/archive/v1.0.0.zip) in a folder visible by apache
+1. Deploy [the files](https://github.com/tzi/ProjectHub/archive/v1.1.0.zip) in a folder visible by apache
 2. See the sample project data, via your browser, to check if the installation works 
 3. Setup your own project data in the `data` folder 
 
