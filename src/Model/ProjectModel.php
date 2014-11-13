@@ -2,26 +2,26 @@
 
 namespace ProjectHub\Model;
 
-use ProjectHub\Model\NoteModel;
+use Model418\FileProvider as Provider;
+use Model418\ModelQuery;
 
-class ProjectModel extends \ProjectHub\Model
+class ProjectModel extends ModelQuery
 {
-
-
-    /* ATTRIBUTES
-     *************************************************************************/
-    public $schema =array(
-        'date' => '',
-        'stamp' => '',
-        'name' => '',
-        'timeline' => array()
-    );
-    
     
 
-    /* INITIALIZATION
+    /* MODEL METHODS
      *************************************************************************/
-    protected function initialization()
+    protected function initSchema()
+    {
+        return array(
+            'date',
+            'stamp',
+            'name',
+            'timeline' => array()
+        );
+    }
+    
+    protected function initialize()
     {
         $this->initializeTimeline();
         $this->initializeStamp();
@@ -33,9 +33,8 @@ class ProjectModel extends \ProjectHub\Model
         if (is_array($this->timeline)) {
             foreach ($this->timeline as $index => $noteData) {
                 $noteData['id'] = $index;
-                $noteModel = new NoteModel;
-                $note = $noteModel->initByData($noteData);
-                $timeline[] = $note;
+                $noteModel = (new NoteModel)->initByData($noteData);
+                $timeline[] = $noteModel;
             }
         }
         $this->timeline = $timeline;
@@ -54,4 +53,31 @@ class ProjectModel extends \ProjectHub\Model
             $this->stamp = $this->date->format("F j, Y");
         }
     }
+
+
+    /* QUERY METHODS
+     *************************************************************************/
+    protected function initProvider()
+    {
+        $provider = (new Provider)
+            ->setFolder(__DIR__ . '/../../data')
+            ->setIdField('name');
+        return $provider;
+    }
+    
+    public function fetchAll($limit = null, $offset = null, &$count = false)
+    {
+        $projectList = parent::fetchAll($limit, $offset, $count);
+        $projectList->uasort(array($this, 'compareDate'));
+        return $projectList;
+    }
+
+    public function compareDate($a, $b)
+    {
+        if ($a->date == $b->date) {
+            return 0;
+        }
+        return ($a->date > $b->date) ? -1 : 1;
+    }
+
 }

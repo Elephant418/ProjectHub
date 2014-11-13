@@ -1,0 +1,25 @@
+{
+    "name": "elephant418/project-hub",
+    "type": "project",
+    "description": "Create online project timelines with PHP",
+    "license": "MIT",
+    "homepage": "https://github.com/Elephant418/ProjectHub",
+    "authors": [
+        {
+            "name": "Thomas Zilliox",
+            "email": "hello@tzi.fr",
+            "homepage": "http://tzi.fr"
+
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "elephant418/model418": "~1.0",
+        "symfony/yaml": "~2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "ProjectHub\\": "src"
+        }
+    }
+}

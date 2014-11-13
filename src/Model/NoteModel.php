@@ -2,24 +2,31 @@
 
 namespace ProjectHub\Model;
 
-class NoteModel extends \ProjectHub\Model
+use Model418\Model;
+
+class NoteModel extends Model
 {
-
-
-    /* ATTRIBUTES
-     *************************************************************************/
-    public $schema =array(
-        'date' => '',
-        'stamp' => '',
-        'content' => '',
-        'links' => array()
-    );
-
 
 
     /* INITIALIZATION
      *************************************************************************/
-    protected function initialization()
+    protected function initSchema()
+    {
+        return array(
+            'date',
+            'stamp',
+            'content',
+            'links' => array()
+        );
+    }
+    
+    protected function initQuery()
+    {
+        // No Query
+        return null;
+    }
+    
+    protected function initialize()
     {
         $time = strtotime($this->stamp);
         if ($time !== false) {

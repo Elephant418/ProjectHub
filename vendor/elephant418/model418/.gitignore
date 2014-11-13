@@ -1,0 +1,10 @@
+# Dev folders
+.idea
+composer.lock
+
+# Dependencies folders
+vendor
+
+
+
+

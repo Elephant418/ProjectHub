@@ -4,9 +4,9 @@ namespace ProjectHub;
 
 define('ROOT_PATH', dirname(__DIR__));
 
-require_once __DIR__ . '/Autoloader.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-use ProjectHub\Entity\ProjectEntity;
+use ProjectHub\Model\ProjectModel;
 
 class Application
 {
@@ -35,8 +35,7 @@ class Application
     
     public function all()
     {
-        $projectEntity = new ProjectEntity;
-        $projectList = $projectEntity->fetchAll();
+        $projectList = (new ProjectModel)->query()->fetchAll();
         if (count($projectList) == 0) {
             $this->renderTutorial();
         } else if (count($projectList) == 1) {
@@ -50,8 +49,7 @@ class Application
     
     public function one($projectId)
     {
-        $projectEntity = new ProjectEntity;
-        $projectList = $projectEntity->fetchAll();
+        $projectList = (new ProjectModel)->query()->fetchAll();
         if (!isset($projectList[$projectId])) {
             return false;
         }

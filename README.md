@@ -41,9 +41,11 @@ The benefits of using a project hub:
 How to Install
 --------
 
-ProjectHub has no dependencies and no databases. The purpose was to have a code easy to install, understand and improve.
+`ProjectHub` use [Model418](http://github.com/Elephant418/Model418) as a storage abstraction layer. So it could be connected to a database instead of the file system.
 
-To start using ProjectHub you have to:
+The dependencies are committed to have a code easy to install, understand and improve.
+
+To start using `ProjectHub` you have to:
 
 1. Deploy [the files](https://github.com/tzi/ProjectHub/archive/v1.0.0.zip) in a folder visible by apache
 2. See the sample project data, via your browser, to check if the installation works 
@@ -54,33 +56,34 @@ To start using ProjectHub you have to:
 How to Manage Your Projects
 --------
 
-The projects are stored as `JSON` files. Every file in the `data` folder is a different project.
+The projects are stored as `Yaml` files. Every file in the `data` folder is a different project.
 
 A project is mainly a timeline of project update, which you can join links, like meetings notes or project deliveries.
    
 The code below is a project example file:
 
 ```json
-{
-    "name": "Project name",
-    "timeline": [
-        {
-            "stamp": "August 14th, 2014",
-            "content": "First",
-            "links": {
-                "Link to meeting notes": "http://example.com/meeting-notes",
-                "As many links as you want": "http://example.com/other-link",
-            }
-        },
-        {
-            "stamp": "August 9th, 2014",
-            "content": "Meeting 1",
-            "links": {
-                "Link to notes, design or demo": "http://example.com/"
-            }
-        }
-    ]
-}
+name: "My first project"
+timeline:
+    -
+        stamp: "August 14th, 2013"
+        content: "Kickoff Meeting"
+        links:
+        "View notes": "#"
+        "View demo": "#"
+    -
+        stamp: "August 9th, 2013"
+        content: "Sign contract"
+        links:
+        "View contract": "#"
+    -
+        stamp: "August 7th, 2013"
+        content: "Initial meeting"
+        links:
+        "Meeting Notes": "#"
+    -
+        stamp: "July 13th, 2013"
+        content: "Initial contact"
 ```
 
 
@@ -88,7 +91,7 @@ The code below is a project example file:
 How to Contribute
 --------
 
-1. Fork the ProjectHub repository
+1. Fork the `ProjectHub` repository
 2. Create a new branch for each feature or improvement
 3. Send a pull request from each feature branch to the **master** branch
 
@@ -101,7 +104,7 @@ All pull requests must follow the [PSR2 standard](https://github.com/php-fig/fig
 Author & Community
 --------
 
-ProjectHub is under [MIT License](http://opensource.org/licenses/MIT).  
+`ProjectHub` is under [MIT License](http://opensource.org/licenses/MIT).  
 The project hub idea & the HTML template was created by [Brad Frost](http://bradfrostweb.com/).  
 The PHP version was created & maintained by [Thomas ZILLIOX](http://tzi.fr).
 
