@@ -69,18 +69,18 @@ timeline:
         stamp: "August 14th, 2013"
         content: "Kickoff Meeting"
         links:
-        "View notes": "#"
-        "View demo": "#"
+            "View notes": "#"
+            "View demo": "#"
     -
         stamp: "August 9th, 2013"
         content: "Sign contract"
         links:
-        "View contract": "#"
+            "View contract": "#"
     -
         stamp: "August 7th, 2013"
         content: "Initial meeting"
         links:
-        "Meeting Notes": "#"
+            "Meeting Notes": "#"
     -
         stamp: "July 13th, 2013"
         content: "Initial contact"
