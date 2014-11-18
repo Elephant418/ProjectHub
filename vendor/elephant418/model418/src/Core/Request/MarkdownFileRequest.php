@@ -1,6 +1,6 @@
 <?php
 
-namespace Model418\Core\Request;
+namespace Elephant418\Model418\Core\Request;
 
 use \Michelf\MarkdownExtra;
 use \Markdownify\ConverterExtra as MarkdownifyExtra;

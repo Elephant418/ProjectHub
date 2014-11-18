@@ -24,9 +24,13 @@ It could be used with or without a framework.
 Features
 --------
 
-For now, Model418 supports only *File system* storage with the following encoding:
+For now, Model418 supports only the following storage:
 
- * Yaml (default), JSON, Text and Markdown.
+ * File System: 
+    - Encoding: in Yaml (default), JSON, Text or Markdown
+    - Subfile: Write the data of an attribute in another file
+    - Multi folders: Use multiple folders, like plugins folder
+ * Session System
 
 [&uarr; top](#readme)
 
@@ -36,13 +40,14 @@ Let's code
 --------
 
 ```php
-// Retrieve all models
-$userList = (new UserModel)->query()->fetchAll();
-
 // Save a new Model
 $user = (new UserModel)
     ->set('firstName', 'John')
     ->save();
+
+// Retrieve all models
+$userList = (new UserModel)->query()->fetchAll();
+count($userList) // 1 
     
 // Retrieve by primary key
 $john = (new UserModel)->query()->fetchById(1);
@@ -68,7 +73,7 @@ This library package requires `PHP 5.4` or later.<br>
 Install [Composer](http://getcomposer.org/doc/01-basic-usage.md#installation) and run the following command to get the latest version:
 
 ```sh
-composer require elephant418/model418:~1.0
+composer require elephant418/model418:~1.1
 ```
 
 [&uarr; top](#readme)

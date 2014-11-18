@@ -1,8 +1,8 @@
 <?php
 
-namespace Model418\Core;
+namespace Elephant418\Model418\Core\Query;
 
-use Model418\ModelList;
+use Elephant418\Model418\ModelList;
 
 trait TQuery
 {

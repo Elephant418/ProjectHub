@@ -1,9 +1,9 @@
 <?php
 
-namespace Test\Model418\Resources\SimpleCase;
+namespace Elephant418\Model418\Test\Resources\MdAttribute;
 
-use Model418\FileProvider as Provider;
-use Model418\ModelQuery;
+use Elephant418\Model418\FileProvider as Provider;
+use Elephant418\Model418\ModelQuery;
 
 class ResourceModel extends ModelQuery
 {
@@ -15,13 +15,17 @@ class ResourceModel extends ModelQuery
     {
         $provider = (new Provider)
             ->setFolder(__DIR__ . '/../data')
+            ->setSubAttribute('content', 'article', 'md')
             ->setIdField('myName');
         return $provider;
     }
 
     protected function initSchema()
     {
-        return array('myName' => 'defaultValue');
+        return array(
+            'myName' => 'defaultValue',
+            'content' => ''
+        );
     }
 
 

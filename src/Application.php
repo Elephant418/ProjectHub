@@ -6,9 +6,9 @@ define('ROOT_PATH', dirname(__DIR__));
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use ProjectHub\Model\ProjectModel;
+use Elephant418\Model418\Core\Factory;
 
-class Application
+class Application extends Factory
 {
 
 
@@ -35,7 +35,7 @@ class Application
     
     public function all()
     {
-        $projectList = (new ProjectModel)->query()->fetchAll();
+        $projectList = $this->get('Project')->query()->fetchAll();
         if (count($projectList) == 0) {
             $this->renderTutorial();
         } else if (count($projectList) == 1) {
@@ -49,7 +49,7 @@ class Application
     
     public function one($projectId)
     {
-        $projectList = (new ProjectModel)->query()->fetchAll();
+        $projectList = $this->get('Project')->query()->fetchAll();
         if (!isset($projectList[$projectId])) {
             return false;
         }

@@ -1,12 +1,12 @@
 <?php
 
-namespace Model418\Core;
+namespace Elephant418\Model418\Core;
 
 class ArrayObject extends \ArrayObject
 {
 
 
-    /* CONSTRUCTOR
+    /* INITIALIZATION
      *************************************************************************/
     public function __construct($input = [])
     {

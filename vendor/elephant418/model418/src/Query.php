@@ -1,9 +1,9 @@
 <?php
 
-namespace Model418;
+namespace Elephant418\Model418;
 
-use Model418\Core\IQuery;
-use Model418\Core\TQuery;
+use Elephant418\Model418\Core\Query\IQuery;
+use Elephant418\Model418\Core\Query\TQuery;
 
 class Query implements IQuery
 {

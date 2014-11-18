@@ -1,8 +1,8 @@
 <?php
 
-namespace Test\Model418\Test;
+namespace Elephant418\Model418\Test\Scenario;
 
-use Model418\FileProvider;
+use Elephant418\Model418\FileProvider;
 
 class FileProviderTest extends \PHPUnit_Framework_TestCase
 {
@@ -52,7 +52,7 @@ class FileProviderTest extends \PHPUnit_Framework_TestCase
         $stub = $this->getFileRequestStub();
         $stub->expects($this->once())
             ->method('getContents')
-            ->with($folder, $id)
+            ->with(array($folder), $id)
             ->will($this->returnValue($expectedData));
         $provider = $this->getFileProvider($stub, $folder);
         
@@ -99,6 +99,31 @@ class FileProviderTest extends \PHPUnit_Framework_TestCase
         
         $actualDataList = $provider->fetchAll();
         $this->assertEquals($idList, array_keys($actualDataList));
+    }
+    
+    /**
+     * @dataProvider providerIdList
+     */
+    public function testFetchAllCached($idList)
+    {
+        $stub = $this->getFetchAllStub($idList, count($idList));
+        $provider = $this->getFileProvider($stub);
+
+        $provider->fetchAll();
+        $provider->fetchAll();
+    }
+
+    /**
+     * @dataProvider providerIdList
+     */
+    public function testFetchAllClearCached($idList)
+    {
+        $stub = $this->getFetchAllStub($idList, count($idList), 2);
+        $provider = $this->getFileProvider($stub);
+
+        $provider->fetchAll();
+        $provider->clearCache();
+        $provider->fetchAll();
     }
 
     /**
@@ -223,12 +248,12 @@ class FileProviderTest extends \PHPUnit_Framework_TestCase
         $stub
             ->expects($this->once())
             ->method('exists')
-            ->with(__DIR__, $expectedId)
+            ->with(array(__DIR__), $expectedId)
             ->will($this->returnValue(false));
         $stub
             ->expects($this->once())
             ->method('putContents')
-            ->with(__DIR__, $expectedId, $data);
+            ->with(array(__DIR__), $expectedId, $data);
         
         $provider = $this->getFileProvider($stub, $folder);
         $actualId = $provider->saveById(null, $data);
@@ -246,7 +271,7 @@ class FileProviderTest extends \PHPUnit_Framework_TestCase
         $stub
             ->expects($this->once())
             ->method('putContents')
-            ->with($folder, $id, $data);
+            ->with(array($folder), $id, $data);
 
         $provider = $this->getFileProvider($stub, $folder);
         $provider->saveById($id, $data);
@@ -280,7 +305,7 @@ class FileProviderTest extends \PHPUnit_Framework_TestCase
         $stub
             ->expects($this->once())
             ->method('putContents')
-            ->with(__DIR__, $expectedId);
+            ->with(array(__DIR__), $expectedId);
 
         $provider = $this->getFileProvider($stub, $folder);
         $actualId = $provider->saveById(null, $data);
@@ -306,14 +331,14 @@ class FileProviderTest extends \PHPUnit_Framework_TestCase
     protected function getFileProvider($stub, $folder = __DIR__, $idField = 'name')
     {
         return (new FileProvider())
-            ->setFileRequest($stub)
+            ->setRequest($stub)
             ->setFolder($folder)
             ->setIdField($idField);
     }
 
     protected function getFileRequestStub()
     {
-        return $this->getMock('Model418\\Core\\Request\\FileRequest');
+        return $this->getMock('Elephant418\\Model418\\Core\\Request\\FileRequest');
     }
 
     protected function addGetContentsMethodToStub($stub, $occurrence = null, $dataList = array())
@@ -339,10 +364,8 @@ class FileProviderTest extends \PHPUnit_Framework_TestCase
         $stub = $this->getFileRequestStub();
         $stub = $this->addGetContentsMethodToStub($stub, $this->exactly($occurrenceList * $occurrenceContents));
         $stub->expects($this->exactly($occurrenceList))
-            ->method('getFolderList')
-            ->will($this->returnValue(array_map(function ($a) {
-                return __DIR__ . '/' . $a . '.yml';
-            }, $idList), true));
+            ->method('getIdList')
+            ->will($this->returnValue($idList), true);
         return $stub;
     }
 

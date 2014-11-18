@@ -1,21 +1,27 @@
 <?php
 
-namespace Test\Model418\Resources\SeparateCase;
+namespace Elephant418\Model418\Test\Resources\Simple;
 
-use Model418\FileProvider as Provider;
-use Model418\Query;
+use Elephant418\Model418\FileProvider as Provider;
+use Elephant418\Model418\ModelQuery;
 
-class ResourceQuery extends Query
+class ResourceModel extends ModelQuery
 {
 
 
-    /* CONSTRUCTOR
+    /* INITIALIZATION
      *************************************************************************/
     protected function initProvider()
     {
         $provider = (new Provider)
-            ->setFolder(__DIR__ . '/../data');
+            ->setFolder(__DIR__ . '/../data')
+            ->setIdField('myName');
         return $provider;
+    }
+
+    protected function initSchema()
+    {
+        return array('myName' => 'defaultValue');
     }
 
 

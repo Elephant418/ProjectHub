@@ -2,8 +2,9 @@
 
 namespace ProjectHub\Model;
 
-use Model418\FileProvider as Provider;
-use Model418\ModelQuery;
+use ProjectHub\Application;
+use Elephant418\Model418\FileProvider as Provider;
+use Elephant418\Model418\ModelQuery;
 
 class ProjectModel extends ModelQuery
 {
@@ -33,7 +34,9 @@ class ProjectModel extends ModelQuery
         if (is_array($this->timeline)) {
             foreach ($this->timeline as $index => $noteData) {
                 $noteData['id'] = $index;
-                $noteModel = (new NoteModel)->initByData($noteData);
+                $noteModel = (new Application)
+                    ->get('Note')
+                    ->initByData($noteData);
                 $timeline[] = $noteModel;
             }
         }

@@ -1,10 +1,10 @@
 <?php
 
-namespace Test\Model418\Resources\NoProviderCase;
+namespace Elephant418\Model418\Test\Resources\NoQuery;
 
-use Model418\ModelQuery;
+use Elephant418\Model418\Model;
 
-class ResourceModel extends ModelQuery
+class ResourceModel extends Model
 {
 
 

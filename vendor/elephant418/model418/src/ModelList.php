@@ -1,8 +1,8 @@
 <?php
 
-namespace Model418;
+namespace Elephant418\Model418;
 
-use Model418\Core\ListObject;
+use Elephant418\Model418\Core\ListObject;
 
 class ModelList extends ListObject
 {

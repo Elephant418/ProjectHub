@@ -14,8 +14,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "elephant418/model418": "~1.0",
-        "symfony/yaml": "~2.5"
+        "elephant418/model418": "~1.1.1"
     },
     "autoload": {
         "psr-4": {

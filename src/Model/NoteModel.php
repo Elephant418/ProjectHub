@@ -2,7 +2,7 @@
 
 namespace ProjectHub\Model;
 
-use Model418\Model;
+use Elephant418\Model418\Model;
 
 class NoteModel extends Model
 {
@@ -32,6 +32,9 @@ class NoteModel extends Model
         if ($time !== false) {
             $this->date = new \DateTime($this->stamp);
             $this->stamp = $this->date->format("F j, Y");
+        }
+        if (!is_array($this->links)) {
+            $this->links = array();
         }
     }
 }

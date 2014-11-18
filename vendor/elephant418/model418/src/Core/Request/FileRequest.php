@@ -1,8 +1,8 @@
 <?php
 
-namespace Model418\Core\Request;
+namespace Elephant418\Model418\Core\Request;
 
-abstract class FileRequest implements IFileRequest
+abstract class FileRequest implements INoRelationRequest
 {
     
     /* ATTRIBUTES
@@ -13,46 +13,69 @@ abstract class FileRequest implements IFileRequest
 
     /* PUBLIC METHODS
      *************************************************************************/
-    public function getContents($folder, $id)
+    public function getContents($folderList, $id)
     {
-        if (!$this->exists($folder, $id)) {
-            return null;
-        }
-        $filePath = $this->getFilePath($folder, $id);
-        $text = file_get_contents($filePath);
         $data = null;
-        if ($text) {
-            $data = $this->getDataFromText($text);
-            if (is_array($data)) {
-                $data['id'] = $id;
+        $folderList = $this->formatToFolderList($folderList);
+        foreach ($folderList as $folder) {
+            if (!$this->exists($folder, $id)) {
+                continue;
+            }
+            $filePath = $this->getFilePath($folder, $id);
+            $text = file_get_contents($filePath);
+            if ($text) {
+                $data = $this->getDataFromText($text);
+                if (is_array($data)) {
+                    $data['id'] = $id;
+                }
+                break;
             }
         }
         return $data;
     }
 
-    public function putContents($folder, $id, $data)
+    public function putContents($folderList, $id, $data)
     {
-        $filePath = $this->getFilePath($folder, $id);
+        $folderList = $this->formatToFolderList($folderList);
+        $filePath = $this->getExistingFilePath($folderList, $id);
+        if (!$filePath) {
+            $filePath = $this->getFilePath(reset($folderList), $id);
+        }
         $text = $this->getTextFromData($data);
         return file_put_contents($filePath, $text);
     }
     
-    public function exists($folder, $id)
+    public function exists($folderList, $id)
     {
-        $filePath = $this->getFilePath($folder, $id);
-        return file_exists($filePath);
+        $folderList = $this->formatToFolderList($folderList);
+        $filePath = $this->getExistingFilePath($folderList, $id);
+        return !!$filePath;
     }
 
-    public function unlink($folder, $id)
+    public function unlink($folderList, $id)
     {
-        $filePath = $this->getFilePath($folder, $id);
-        return unlink($filePath);
+        $folderList = $this->formatToFolderList($folderList);
+        $filePath = $this->getExistingFilePath($folderList, $id);
+        if ($filePath) {
+            return unlink($filePath);
+        }
+        return false;
     }
 
-    public function getFolderList($folder)
+    public function getIdList($folderList)
     {
-        $filePattern = $this->getFilePath($folder);
-        return glob($filePattern);
+        $idList = array();
+        $folderList = $this->formatToFolderList($folderList);
+        foreach ($folderList as $folder) {
+            $filePattern = $this->getFilePath($folder);
+            $fileList = glob($filePattern);
+            foreach ($fileList as $file) {
+                $file = basename($file);
+                $id = substr($file, 0, strrpos($file, '.'));
+                $idList[] = $id;
+            }
+        }
+        return array_unique($idList);
     }
 
 
@@ -60,18 +83,35 @@ abstract class FileRequest implements IFileRequest
      *************************************************************************/
     public static function register()
     {
-        (new FileRequestFactory)->register(get_called_class());
+        (new FileRequestFactory)->register(get_called_class(), static::$factoryIndexList);
     }
 
 
     /* PROTECTED METHODS
      *************************************************************************/
+    protected function formatToFolderList($folderList) {
+        if (!is_array($folderList)) {
+            $folderList = array($folderList);
+        }
+        return $folderList;
+    }
+    
     protected function getFilePath($folder, $id='*') {
         $filePath = $folder.'/'.$id;
         if (!static::$extension) {
             return $filePath;
         }
         return $filePath.'.'.static::$extension;
+    }
+
+    protected function getExistingFilePath($folderList, $id) {
+        foreach ($folderList as $folder) {
+            $filePath = $this->getFilePath($folder, $id);
+            if (file_exists($filePath)) {
+                return $filePath;
+            }
+        }
+        return false;
     }
     
     protected function getDataFromText($text)

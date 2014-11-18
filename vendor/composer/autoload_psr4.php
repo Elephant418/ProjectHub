@@ -6,8 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Test\\Model418\\' => array($vendorDir . '/elephant418/model418/test'),
     'ProjectHub\\' => array($baseDir . '/src'),
-    'Model418\\Example\\' => array($vendorDir . '/elephant418/model418/example'),
-    'Model418\\' => array($vendorDir . '/elephant418/model418/src'),
+    'Elephant418\\Model418\\Test\\' => array($vendorDir . '/elephant418/model418/test'),
+    'Elephant418\\Model418\\Example\\' => array($vendorDir . '/elephant418/model418/example'),
+    'Elephant418\\Model418\\' => array($vendorDir . '/elephant418/model418/src'),
 );

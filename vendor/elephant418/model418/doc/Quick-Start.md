@@ -2,8 +2,9 @@ Quick Start
 ======
 
 1. [Install](#install)
-2. [Define a Model](#define-a-model)
-3. [Basic Usage](#basic-usage)
+2. [Basic Usage](#basic-usage)
+3. [Define Storage Folder](#define-storage-folder)
+4. [Define A Model Schema](#define-a-model-schema)
 
 
 
@@ -13,54 +14,35 @@ Install
 Install [Composer](http://getcomposer.org/doc/01-basic-usage.md#installation) and run the following command:
 
 ```sh
-composer require elephant418/model418:~1.0
+composer require elephant418/model418:~1.1
 ```
-
-
-
-Define a Model
---------
-
-Start by defining a model
-
-```php
-use Model418\Model;
-
-class UserModel extends Model
-{
-
-    // The list of the attributes of your model
-    protected function initSchema()
-    {
-        return array('firstName', 'lastName');
-    }
-    
-    // An instance of the associated Query.
-    // It will be used to query the storage system, in this case the file system.
-    protected function initQuery()
-    {
-        // Instance a FileQuery and set the folder that will be used for storage
-        return new FileQuery($this, __DIR__.'/User');
-    }
-}
-```
-
-[&uarr; top](#readme)
 
 
 
 Basic Usage
 --------
 
+Start by defining a model with the `ModelQuery` starter class:
+
+```php
+use Elephant418\Model418\ModelQuery;
+
+class UserModel extends ModelQuery
+{
+}
+```
+
 ```php
 // Require composer autoload
-require_once( __DIR__ . '/../../vendor/autoload.php');
-use Model418\Example\BasicUsage\UserModel;
+require_once( __DIR__ . '/path/to/vendor/autoload.php');
+use My\Project\Namespace\Model\UserModel;
 
 // Retrieve all models
 $userList = (new UserModel)->query()->fetchAll();
+echo count($userList);
 
 // Save a new Model
+// And create a `data/UserModel/1.yml` file
 $user = (new UserModel)
     ->set('firstName', 'John')
     ->save();
@@ -82,4 +64,47 @@ echo $john->firstName.' '.$john->lastName.PHP_EOL;
 $john->delete();
 ```
 
-[&uarr; top](#readme)
+
+
+Define Storage Folder
+--------
+
+You can define in which folder you want to store your data, by overriding the `initFolder()` method:
+
+```php
+class UserModel extends ModelQuery
+{
+    protected function initFolder()
+    {
+        // Return the path where you want to store your data.
+        return __DIR__.'/../data/User';
+    }
+}
+```
+
+
+
+Define A Model Schema
+--------
+
+You can define an exclusive list of attribute for your model:
+
+```php
+class UserModel extends ModelQuery
+{
+    protected function initSchema()
+    {
+        // The list of the attributes of your model
+        return array('firstName', 'lastName');
+    }
+}
+```
+
+If a schema is set, you could not set another attribute: 
+
+```php
+// Throw RuntimeException
+$user = (new UserModel)
+    ->set('age', '30')
+    ->save();
+```

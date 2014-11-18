@@ -1,13 +1,13 @@
 <?php
 
-namespace Test\Model418\Test;
+namespace Elephant418\Model418\Test\Scenario;
 
-use Test\Model418\Resources\SimpleCase\ResourceModel as SimpleModel;
-use Test\Model418\Resources\SeparateCase\ResourceModel as SeparateModel;
-use Test\Model418\Resources\NoProviderCase\ResourceModel as NoProviderModel;
-use Test\Model418\Resources\JSONCase\ResourceModel as JSONModel;
-use Test\Model418\Resources\SubAttributeCase\ResourceModel as SubAttributeModel;
-use Test\Model418\Resources\MdAttributeCase\ResourceModel as MdAttributeModel;
+use Elephant418\Model418\Test\Resources\Simple\ResourceModel as SimpleModel;
+use Elephant418\Model418\Test\Resources\Separate\ResourceModel as SeparateModel;
+use Elephant418\Model418\Test\Resources\NoQuery\ResourceModel as NoQueryModel;
+use Elephant418\Model418\Test\Resources\JSON\ResourceModel as JSONModel;
+use Elephant418\Model418\Test\Resources\SubAttribute\ResourceModel as SubAttributeModel;
+use Elephant418\Model418\Test\Resources\MdAttribute\ResourceModel as MdAttributeModel;
 
 class EndToEndTest extends \PHPUnit_Framework_TestCase
 {
@@ -32,10 +32,10 @@ class EndToEndTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('myValue', $model->myName);
     }
     
-    public function testNoProvider()
+    public function testNoQuery()
     {
         $this->setExpectedException('LogicException');
-        (new NoProviderModel)->query()->fetchById('test');
+        (new NoQueryModel)->query()->fetchById('test');
     }
     
     public function testSaveAndDelete()
