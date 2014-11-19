@@ -2,7 +2,7 @@
 
 namespace Elephant418\Model418\Core\Request;
 
-class SessionRequest implements INoRelationRequest
+class SessionRequest implements IKeyValueRequest
 {
     
     /* CONSTANTS

@@ -35,7 +35,7 @@ class Application extends Factory
     
     public function all()
     {
-        $projectList = $this->get('Project')->query()->fetchAll();
+        $projectList = $this->newInstance('Project')->query()->fetchAll();
         if (count($projectList) == 0) {
             $this->renderTutorial();
         } else if (count($projectList) == 1) {
@@ -49,7 +49,7 @@ class Application extends Factory
     
     public function one($projectId)
     {
-        $projectList = $this->get('Project')->query()->fetchAll();
+        $projectList = $this->newInstance('Project')->query()->fetchAll();
         if (!isset($projectList[$projectId])) {
             return false;
         }

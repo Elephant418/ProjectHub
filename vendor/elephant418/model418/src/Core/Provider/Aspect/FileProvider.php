@@ -1,24 +1,27 @@
 <?php
 
-namespace Elephant418\Model418\Core\Provider\FileProvider;
+namespace Elephant418\Model418\Core\Provider\Aspect;
 
 use Elephant418\Model418\Core\Provider\IProvider;
-use Elephant418\Model418\Core\Provider\CacheDumpProvider;
-use Elephant418\Model418\Core\Provider\TNamedIdProvider;
-use Elephant418\Model418\Core\Request\FileRequestFactory;
-use Elephant418\Model418\Core\Request\TextFileRequest;
-use Elephant418\Model418\Core\Request\JSONFileRequest;
-use Elephant418\Model418\Core\Request\YamlFileRequest;
-use Elephant418\Model418\Core\Request\MarkdownFileRequest;
+use Elephant418\Model418\Core\Request\FileRequest\FileRequestFactory;
+use Elephant418\Model418\Core\Request\FileRequest\TextFileRequest;
+use Elephant418\Model418\Core\Request\FileRequest\JSONFileRequest;
+use Elephant418\Model418\Core\Request\FileRequest\YamlFileRequest;
+use Elephant418\Model418\Core\Request\FileRequest\MarkdownFileRequest;
 
-TextFileRequest::register();
-JSONFileRequest::register();
-YamlFileRequest::register();
-MarkdownFileRequest::register();
-
-class FileProvider extends CacheDumpProvider implements IProvider
+abstract class FileProvider extends RuntimeCacheKeyValueProvider implements IProvider
 {
     use TNamedIdProvider;
+
+
+    /* INITIALIZATION
+     *************************************************************************/
+    public function __construct() {
+        TextFileRequest::register();
+        JSONFileRequest::register();
+        YamlFileRequest::register();
+        MarkdownFileRequest::register();
+    }
 
 
     /* FOLDER METHODS
@@ -90,7 +93,7 @@ class FileProvider extends CacheDumpProvider implements IProvider
     protected function getRequestFromName($format)
     {
         if (is_string($format)) {
-            $format = (new FileRequestFactory)->get($format);
+            $format = (new FileRequestFactory)->newInstance($format);
         }
         return $format;
     }

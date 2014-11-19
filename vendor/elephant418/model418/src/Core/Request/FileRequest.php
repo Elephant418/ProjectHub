@@ -2,7 +2,9 @@
 
 namespace Elephant418\Model418\Core\Request;
 
-abstract class FileRequest implements INoRelationRequest
+use Elephant418\Model418\Core\Request\FileRequest\FileRequestFactory;
+
+abstract class FileRequest implements IKeyValueRequest
 {
     
     /* ATTRIBUTES

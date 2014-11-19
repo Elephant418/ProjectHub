@@ -33,9 +33,8 @@ class ProjectModel extends ModelQuery
         $timeline = array();
         if (is_array($this->timeline)) {
             foreach ($this->timeline as $index => $noteData) {
-                $noteData['id'] = $index;
                 $noteModel = (new Application)
-                    ->get('Note')
+                    ->newInstance('Note')
                     ->initByData($noteData);
                 $timeline[] = $noteModel;
             }

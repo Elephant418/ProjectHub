@@ -1,21 +1,25 @@
 <?php
 
-namespace Elephant418\Model418\Core\Request;
+namespace Elephant418\Model418\Core\Request\FileRequest;
 
-class TextFileRequest extends FileRequest
+use Elephant418\Model418\Core\Request\FileRequest;
+use \Michelf\MarkdownExtra;
+use \Markdownify\ConverterExtra as MarkdownifyExtra;
+
+class MarkdownFileRequest extends FileRequest
 {
 
     /* ATTRIBUTES
      *************************************************************************/
-    public static $extension = 'txt';
-    public static $factoryIndexList = array('text', 'txt');
+    public static $extension = 'md';
+    public static $factoryIndexList = array('markdown', 'md');
 
 
     /* PROTECTED METHODS
      *************************************************************************/
     protected function getDataFromText($text)
     {
-        return $text;
+        return MarkdownExtra::defaultTransform($text);
     }
     
     protected function getTextFromData($data)
@@ -23,6 +27,6 @@ class TextFileRequest extends FileRequest
         if (!is_string($data)) {
             throw new \RuntimeException('Wrong type of data to markdownify: '.get_type($data));
         }
-        return $data;
+        return (new MarkdownifyExtra)->parseString($data);
     }
 }

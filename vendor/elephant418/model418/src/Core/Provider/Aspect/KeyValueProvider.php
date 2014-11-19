@@ -1,8 +1,8 @@
 <?php
 
-namespace Elephant418\Model418\Core\Provider;
+namespace Elephant418\Model418\Core\Provider\Aspect;
 
-abstract class NoRelationProvider
+abstract class KeyValueProvider
 {
 
 

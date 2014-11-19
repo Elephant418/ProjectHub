@@ -2,12 +2,12 @@
 
 namespace Elephant418\Model418;
 
-use Elephant418\Model418\Core\Provider\NoRelationProvider;
 use Elephant418\Model418\Core\Provider\IProvider;
-use Elephant418\Model418\Core\Provider\TNamedIdProvider;
+use Elephant418\Model418\Core\Provider\Aspect\TNamedIdProvider;
+use Elephant418\Model418\Core\Provider\Aspect\KeyValueProvider;
 use Elephant418\Model418\Core\Request\SessionRequest;
 
-class SessionProvider extends NoRelationProvider implements IProvider
+class SessionProvider extends KeyValueProvider implements IProvider
 {
     use TNamedIdProvider;
 

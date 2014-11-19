@@ -1,6 +1,6 @@
 <?php
 
-namespace Elephant418\Model418\Core\Request;
+namespace Elephant418\Model418\Core\Request\FileRequest;
 
 use Elephant418\Model418\Core\Factory;
 

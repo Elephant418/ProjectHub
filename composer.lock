@@ -8,20 +8,20 @@
     "packages": [
         {
             "name": "elephant418/model418",
-            "version": "v1.1.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Elephant418/Model418.git",
-                "reference": "30af211a22126672c04e3fcf705633cb4c26f976"
+                "reference": "0b07b66e77b7064deaf6459cb43a2366fdb1946a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Elephant418/Model418/zipball/30af211a22126672c04e3fcf705633cb4c26f976",
-                "reference": "30af211a22126672c04e3fcf705633cb4c26f976",
+                "url": "https://api.github.com/repos/Elephant418/Model418/zipball/0b07b66e77b7064deaf6459cb43a2366fdb1946a",
+                "reference": "0b07b66e77b7064deaf6459cb43a2366fdb1946a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0",
+                "php": ">=5.4.0",
                 "symfony/yaml": "~2.5"
             },
             "require-dev": {
@@ -53,7 +53,7 @@
             "keywords": [
                 "model"
             ],
-            "time": "2014-11-18 22:07:07"
+            "time": "2014-11-19 10:09:53"
         },
         {
             "name": "symfony/yaml",

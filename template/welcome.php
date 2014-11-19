@@ -9,28 +9,29 @@
 <body>
 <h1>Welcome to ProjectHub</h1>
 <p>You have no projects configured yet.</p>
-<p>To setup your first project, you just have to create a file <code>data/example.json</code>. You can use the example data below:</p>
+<p>To setup your first project, you just have to create a file <code>data/example.yml</code>. You can use the example data below:</p>
 <pre><code>
-{
-    "name": "Project name",
-    "timeline": [
-        {
-            "stamp": "August 14th, 2014",
-            "content": "Meeting 2",
-            "links": {
-                "Link to meeting notes": "http://example.com/meeting-notes",
-                "As many links as you want": "http://example.com/other-link",
-            }
-        },
-        {
-            "stamp": "August 9th, 2014",
-            "content": "Meeting 1",
-            "links": {
-                "Link to notes, design or demo": "http://example.com/"
-            }
-        }
-    ]
-}
+name: "My first project"
+timeline:
+    -
+        stamp: "August 14th, 2013"
+        content: "Kickoff Meeting"
+        links:
+            "View notes": "#"
+            "View demo": "#"
+    -
+        stamp: "August 9th, 2013"
+        content: "Sign contract"
+        links:
+            "View contract": "#"
+    -
+        stamp: "August 7th, 2013"
+        content: "Initial meeting"
+        links:
+            "Meeting Notes": "#"
+    -
+        stamp: "July 13th, 2013"
+            content: "Initial contact"
 </code></pre>
 </body>
 </html>

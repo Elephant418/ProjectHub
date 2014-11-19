@@ -2,9 +2,9 @@
 
 namespace ProjectHub\Model;
 
-use Elephant418\Model418\Model;
+use Elephant418\Model418\FlatModel;
 
-class NoteModel extends Model
+class NoteModel extends FlatModel
 {
 
 
@@ -18,12 +18,6 @@ class NoteModel extends Model
             'content',
             'links' => array()
         );
-    }
-    
-    protected function initQuery()
-    {
-        // No Query
-        return null;
     }
     
     protected function initialize()

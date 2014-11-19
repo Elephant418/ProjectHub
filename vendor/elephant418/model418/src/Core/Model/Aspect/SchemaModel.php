@@ -1,8 +1,8 @@
 <?php
 
-namespace Elephant418\Model418\Core\Model;
+namespace Elephant418\Model418\Core\Model\Aspect;
 
-class SchemaModel extends Model
+abstract class SchemaModel extends Model
 {
 
 

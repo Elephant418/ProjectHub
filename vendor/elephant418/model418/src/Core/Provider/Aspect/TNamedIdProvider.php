@@ -1,6 +1,6 @@
 <?php
 
-namespace Elephant418\Model418\Core\Provider;
+namespace Elephant418\Model418\Core\Provider\Aspect;
 
 trait TNamedIdProvider
 {
